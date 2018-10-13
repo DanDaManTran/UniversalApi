@@ -2,6 +2,7 @@ const axios = require('axios');
 
 module.exports = function(app){
   app.post('/dan', (req,res)=>{
+    // console.log(req.body)
     return axios({
        method: req.body.method,
        url: req.body.url,
@@ -12,6 +13,7 @@ module.exports = function(app){
         data: result.data,
       };
 
+      // console.log(ret)
       return res.json(ret)
     })
     .catch(err=>{
@@ -21,6 +23,8 @@ module.exports = function(app){
               data: err.response.data || null,
           }
       };
+
+      // console.log(error)
       res.status(400).json(error)
     });
   });
